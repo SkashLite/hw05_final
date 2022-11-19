@@ -1,0 +1,54 @@
+{% load static %}
+ <nav class="navbar navbar-light bg-secondary">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'posts:index' %}">
+      <img src="{% static 'img/logo.png' %}" width="30" height="30" style="border-radius: 10px" class="d-inline-block align-top" alt="">
+      <span style="color:red">Ya</span>tube
+    </a>
+    <ul class="nav nav-pills flex align-items-center gap-1">
+      <li class="nav-item">              
+        <a class="btn btn-dark
+           {% if request.resolver_match.view_name  == 'about:author' %}
+              active
+           {% endif %}"
+           href="{% url 'about:author' %}">Об авторе
+        </a>
+      </li> 
+      <li class="nav-item">
+        <a class="btn btn-dark
+        {% if request.resolver_match.view_name == 'about:tech'%}
+          active
+        {% endif %}"
+        href="{% url 'about:tech' %}">Технологии
+        </a>
+      </li>
+      {% if request.user.is_authenticated %}
+      <li class="nav-item"> 
+        <a class="btn btn-dark 
+        {% if request.resolver_match.view_name == 'posts:create_post'%}
+          active 
+        {% endif %}" href="{% url 'posts:create_post' %}">
+        Новая запись
+        </a>
+      </li>
+      <li class="nav-item"> 
+        <a class="btn btn-dark" href="<!--  -->">Изменить пароль</a>
+      </li>
+      <li class="nav-item"> 
+        <a class="btn btn-danger" href="{% url 'users:logout' %}">Выйти</a>
+      </li>
+      <li>
+        {{ user.username }}
+      </li>
+      {% else %}
+      <li class="nav-item"> 
+        <a class="btn btn-dark" href="{% url 'users:login' %}">Войти</a>
+      </li>
+      <li class="nav-item"> 
+        <a class="btn btn-dark" href="{% url 'users:signup' %}">Регистрация</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>      
+</header>

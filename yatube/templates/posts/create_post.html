@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block 'title' %}
+  {% if post %}
+    Редактирование поста
+  {% else %}
+    Создание нового поста
+  {% endif %}
+{% endblock 'title' %}
+{% load user_filters %}
+{% block 'content' %} 
+  <div class="container py-6">
+    <div class="row justify-content-center">
+      <div class="col-md- p-5">
+        <div class="card">
+          <div class="card-header">   
+            {% if post %}
+              Редактировать запись
+            {% else %}
+              Добавить запись
+            {% endif %}              
+          </div>
+          <div class="card-body">
+            {% if form.errors %}
+          {% for field in form %}
+            {% for error in field.errors %}            
+              <div class="alert alert-danger">
+                {{ error|escape }}
+              </div>
+            {% endfor %}
+          {% endfor %}
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+              {{ error|escape }}
+            </div>
+          {% endfor %}
+          {% endif %}        
+            <form method="post" enctype="multipart/form-data" action={% if post %}"{% url 'posts:post_edit' post_id=post.id %}"{% else %}"{% url 'posts:create_post' %}"{% endif %}>
+                {% csrf_token %}
+                {% for field in form %}
+                  <label for="{{ field.id_for_label }}" class="form-label">
+                    {{ field.label }}
+                    {% if field.field.required %}
+                      <span class="required text-danger">*</span>
+                    {% endif %}
+                  </label>
+                  {{ field|addclass:'form-control' }}
+                {% endfor %}
+                <div class="mt-4">
+                  <button type="submit" class="btn btn-secondary">
+                    {% if post %}
+                      Сохранить
+                    {% else %}
+                       Добавить
+                    {% endif %}               
+                  </button>
+                </div>   
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock 'content' %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}О авторе проекта{% endblock 'title'%}
+{% block 'content' %}
+  <h1 style="text-align:center">Привет, я автор этого проекта</h1>
+  <table width="100%" cellspacing="10" cellpadding="10">
+    <tr> 
+      <td class="leftcol">
+        <img src="{% static 'img/fav/MyPhoto.png' %}" width="162" height="216" style="border-radius: 15px" alt="Это я">
+      </td>
+      <td valign="top">Меня зовут Максим, мне 23года :-) я родился в городе Каменск-Шахтинский. В 2019 году я переехал в Санкт-Петербург и по сей день я проживаю здесь.
+        Это мой первый проект написаный на Django. 
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a class="leftcol" href="https://vk.com/m_v_99"> <img src="{% static 'img/fav/vk.png' %}" width="50" height="50" alt=""></a>
+        <a class="leftcol" href="https://www.instagram.com/no_brakes_99/"> <img src="{% static 'img/fav/instagram.png' %}" width="50" height="50" alt=""></a>
+        <a class="leftcol" href="https://github.com/SkashLite"> <img src="{% static 'img/fav/github.png' %}" width="50" height="50" alt=""></a>
+      </td>
+    </tr>
+   </table>
+{% endblock 'content'%} 

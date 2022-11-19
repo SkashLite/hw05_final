@@ -1,0 +1,3 @@
+{% if post.group %}
+    <a href="{% url 'posts:group_list' post.group.slug %}">Все записи группы</a>
+{% endif %}
