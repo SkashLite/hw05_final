@@ -3,10 +3,10 @@ import tempfile
 
 from django import forms
 from django.conf import settings
+from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 from django.urls import reverse
-from django.core.cache import cache
 
 from ..models import Follow, Group, Post, User
 
@@ -294,4 +294,3 @@ class FollowTests(TestCase):
         self.assertEqual(post_text_0, 'Тестовая запись для тестирования ленты')
         response = self.client_auth_following.get('/follow/')
         self.assertNotEqual(response, 'Тестовая запись для тестирования ленты')
-        
