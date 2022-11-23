@@ -290,4 +290,3 @@ class FollowTests(TestCase):
     def test_folower_folowing(self):
         self.client_auth_following.get(self.follow)
         self.assertEqual(Follow.objects.all().count(), 0)
-
