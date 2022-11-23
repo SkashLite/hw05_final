@@ -29,6 +29,7 @@ class PostsURLTests(TestCase):
         cls.PRIVAT_URLS = {
             f'/posts/{str(cls.post.pk)}/edit/': 'posts/create_post.html',
             '/create/': 'posts/create_post.html',
+            '/follow/': 'posts/follow.html',
         }
 
     def setUp(self):
