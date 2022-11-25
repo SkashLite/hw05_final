@@ -42,32 +42,40 @@
       {% endif %}   
     </article>
     {% if user.is_authenticated %}
+      <div class="container">
       <div class="card my-4">
         <h5 class="card-header">Добавить комментарий:</h5>
         <div class="card-body">
           <form method="post" action="{% url 'posts:add_comment' post.id %}">
             {% csrf_token %}      
-            <div class="form-group mb-2">
+            <div class="form-group mb-4">
               {{ form.text|addclass:"form-control" }}
             </div>
             <button type="submit" class="btn btn-secondary">Отправить</button>
           </form>
-        </div>
+        </div>  
+      </div>
       </div>
     {% endif %}
-  {% for comment in comments %}
-    <div class="media mb-4">
-      <div class="media-body">
-        <h5 class="mt-0">
-          <a href="{% url 'posts:profile' comment.author.username %}">
-            {{ comment.author.username }}
-          </a>
-        </h5>
-        <p>
-          {{ comment.text }}
-        </p>
+    <div class="container">
+    {% for comment in comments %}
+    <div class="container py-2">
+      <div class="card p-3 shadow-lg border-1" style="border-radius:15px">
+      <div class="media mb-2">
+        <div class="media-body">
+          <h5 class="mt-1">
+            <a href="{% url 'posts:profile' comment.author.username %}">
+              {{ comment.author.username }}
+            </a>
+          </h5>
+          <p>
+            {{ comment.text }}
+          </p>
+        </div>
       </div>
+      </div>
+    </div>  
+    {% endfor %}
     </div>
-  {% endfor %}
   </div> 
 {% endblock 'content' %}

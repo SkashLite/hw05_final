@@ -26,16 +26,18 @@ SECRET_KEY = '3-mdc*i&k1nu*-7&nm*6&_0900fa1(sf-z-_hwyq@c+g&i(2$@'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'www.supermaks99.pythonanywhere.com',
+    'supermaks99.pythonanywhere.com',
     'localhost',
     '127.0.0.1',
     '[::1]',
     'testserver',
-]
-
+] 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'debug_toolbar',
     'about.apps.AboutConfig',
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,6 +63,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'yatube.urls'
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
