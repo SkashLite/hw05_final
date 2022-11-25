@@ -65,12 +65,16 @@
         <div class="media-body">
           <h5 class="mt-1">
             <a href="{% url 'posts:profile' comment.author.username %}">
-              {{ comment.author.username }}
+              {{ comment.author.get_full_name }}
             </a>
           </h5>
+          <hr>
           <p>
             {{ comment.text }}
           </p>
+          <p class="text-end">
+            {{ comment.created|date:"d E Y" }} {{comment.created|time:"h:i"}}
+          </p>  
         </div>
       </div>
       </div>

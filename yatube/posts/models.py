@@ -77,6 +77,7 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+        ordering = ('-created',)
 
     def __str__(self):
         return self.text[:settings.SLICE_TEXT]
